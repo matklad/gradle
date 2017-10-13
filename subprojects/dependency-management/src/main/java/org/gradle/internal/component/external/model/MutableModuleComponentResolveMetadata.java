@@ -84,6 +84,11 @@ public interface MutableModuleComponentResolveMetadata {
     void setDependencies(Iterable<? extends DependencyMetadata> dependencies);
 
     /**
+     * Make the list of dependencies mutable. Does not make the dependencies themselves mutable.
+     */
+    List<DependencyMetadata> makeDependencyListMutable();
+
+    /**
      * Returns the artifacts to apply to all configurations. Is null when there are no such artifacts.
      */
     @Nullable

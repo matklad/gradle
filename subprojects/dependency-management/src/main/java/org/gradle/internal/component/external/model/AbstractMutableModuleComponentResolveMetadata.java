@@ -18,6 +18,7 @@ package org.gradle.internal.component.external.model;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import org.gradle.api.artifacts.ModuleVersionIdentifier;
 import org.gradle.api.artifacts.component.ModuleComponentIdentifier;
 import org.gradle.api.internal.artifacts.DefaultModuleVersionIdentifier;
@@ -279,5 +280,11 @@ abstract class AbstractMutableModuleComponentResolveMetadata implements MutableM
     public void setDependencies(Iterable<? extends DependencyMetadata> dependencies) {
         this.dependencies = ImmutableList.copyOf(dependencies);
         resetConfigurations();
+    }
+
+    public List<DependencyMetadata> makeDependencyListMutable() {
+        ArrayList<DependencyMetadata> mutableDependencies = Lists.newArrayList(this.dependencies);
+        this.dependencies = mutableDependencies;
+        return mutableDependencies;
     }
 }
